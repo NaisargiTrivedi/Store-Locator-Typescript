@@ -22,4 +22,6 @@ const sequelize: Sequelize = new Sequelize(process.env.DB_NAME as string, proces
     "host": "localhost"
 });
 
+console.log("s...........................",sequelize);
+
 export default sequelize;
