@@ -34,7 +34,7 @@ app.use(registerSession);
 userModel.findOne({
     where: { email: "admin@gmail.com" },
 }).then((user) => {
-    console.log(user);
+    console.log("u.......................",user);
     if (!user) {
         sequelize.sync()
             .then(() => {
