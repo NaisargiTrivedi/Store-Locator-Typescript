@@ -21,13 +21,14 @@ describe('get-stores-route-test', () => {
             })
     });
 
-    it('no stores found returning 404', (done) => {
+    it('no stores found', (done) => {
         addStoreModel.deleteMany().then(() => {
             chai.request(app)
                 .get('/stores/storeDataFetchApi')
                 .end((_err, res) => {
+                    console.log(res);
                     expect(res).to.have.status(200);
-                    expect(res.text).to.be.equal("No stores found");
+                    expect(res.text).to.be.equal('[]');
                     done();
                 })
         });

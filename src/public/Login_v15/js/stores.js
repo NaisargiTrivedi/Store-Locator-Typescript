@@ -1,72 +1,54 @@
 let storeTable;
 
 const storeDataFetch = () => {
-    $.ajax({
-        type: "GET",
-        url: "/stores/storeDataFetchApi/",
-        async: true,
-        cache: false,
-        success: function (data) {
-            if (data === "No stores found") {
-                console.log("if");
-            }
-            else {
-                console.log("else");
-                storeTable = $('#storeTable').DataTable({
-                    ajax: {
-                        type: "GET",
-                        url: "/stores/storeDataFetchApi/",
-                        dataSrc: "",
-                        dataType: "json"
-                    },
-                    columns: [
-                        { data: "storeName", name: "StoreName" },
-                        {
-                            data: "logoFilePath",
-                            render: function (data) {
-                                return '<img src="/Login_v15/images/' + data + '" height="50" width="90">';
-                            }
-                        },
-                        { data: "address", name: "Address" },
-                        {
-                            data: "status", name: "Status",
-                            render: function (data) {
-                                if (data) {
-                                    return '<span class="badge" style="background-color: #67B644;">Active</span>';
-                                }
-                                else {
-                                    return '<span class="badge" style="background-color: #FF6B6B;">InActive</span>';
-                                }
-
-                            }
-                        },
-                        {
-                            data: {
-                                "id": "_id",
-                                "storeName": "storeName",
-                                "city": "city",
-                                "state": "state",
-                                "country": "country",
-                                "postalCode": "postalCode",
-                                "address": "address",
-                                "logo": "logoFilePath",
-                                "status": "status"
-                            },
-                            render: function (full) {
-                                console.log(full);
-                                return '<div class="d-flex flex-row"><button type="button" class="btn btn-success me-3" data-bs-toggle="modal" data-bs-target="#editModal" data-id="' + full._id + '" data-storename="' + full.storeName + '" data-city="' + full.city + '" data-state="' + full.state + '" data-country="' + full.country + '" data-postalcode="' + full.postalCode + '" data-address="' + full.address + '"  data-status="' + full.status + '" data-logo="' + full.logoFilePath + '">Edit</button> <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="' + full._id + '">Delete</button></div>';
-                            }
-                        }
-                    ]
-                });
-            }
+    storeTable = $('#storeTable').DataTable({
+        ajax: {
+            type: "GET",
+            url: "/stores/storeDataFetchApi/",
+            dataSrc: "",
+            dataType: "json"
         },
-        error: function () {
-            alert("error");
-        }
-    });
+        columns: [
+            { data: "storeName", name: "StoreName" },
+            {
+                data: "logoFilePath",
+                render: function (data) {
+                    return '<img src="/Login_v15/images/' + data + '" height="50" width="90">';
+                }
+            },
+            { data: "address", name: "Address" },
+            {
+                data: "status", name: "Status",
+                render: function (data) {
+                    if (data) {
+                        return '<span class="badge" style="background-color: #67B644;">Active</span>';
+                    }
+                    else {
+                        return '<span class="badge" style="background-color: #FF6B6B;">InActive</span>';
+                    }
 
-};
+                }
+            },
+            {
+                data: {
+                    "id": "_id",
+                    "storeName": "storeName",
+                    "city": "city",
+                    "state": "state",
+                    "country": "country",
+                    "postalCode": "postalCode",
+                    "address": "address",
+                    "logo": "logoFilePath",
+                    "status": "status"
+                },
+                render: function (full) {
+                    console.log(full);
+                    return '<div class="d-flex flex-row"><button type="button" class="btn btn-success me-3" data-bs-toggle="modal" data-bs-target="#editModal" data-id="' + full._id + '" data-storename="' + full.storeName + '" data-city="' + full.city + '" data-state="' + full.state + '" data-country="' + full.country + '" data-postalcode="' + full.postalCode + '" data-address="' + full.address + '"  data-status="' + full.status + '" data-logo="' + full.logoFilePath + '">Edit</button> <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="' + full._id + '">Delete</button></div>';
+                }
+            }
+        ]
+    });
+}
 
 $('#editModal').on('show.bs.modal', function (event) {
     let id = $(event.relatedTarget).data('id');

@@ -39,7 +39,7 @@ describe('Store-fetch-api', () => {
 
         await storeFetchApi(req, res, next);
         expect(res).to.have.property('statusCode').equals(200);
-        expect(res.data).to.be.an('array').length.greaterThan(0);
+        expect(res.data).to.be.an('array');
     });
 
     it('store updated successfully', async () => {

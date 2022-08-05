@@ -13,7 +13,7 @@ const storeFetchApi = async (_req: Request, res: Response, next: NextFunction): 
         if (stores.length > 0) {
             return res.status(200).send(stores);
         }
-         return res.status(200).send("No stores found");
+         return res.status(200).send([]);
     }
     catch (err: any) {
         const error: Error = new Error(err);
