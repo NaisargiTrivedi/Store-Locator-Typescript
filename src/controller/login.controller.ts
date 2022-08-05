@@ -22,6 +22,7 @@ const loginPost = async (req: Request, res: Response, next: NextFunction): Promi
             return res.status(422).render('login', { error, req });
         }
         const loginDetails: string = await login(req, next);
+        console.log("body......................",req.body);
         console.log("loginDetails.....................",loginDetails);
         if (loginDetails === 'Email does not exists') {
             const emailIncorrect: object = { email: true };
