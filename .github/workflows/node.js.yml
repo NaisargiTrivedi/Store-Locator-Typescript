@@ -21,10 +21,26 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+        
+    - env:
+        PORT: ${{secrets.PORT}}
+        MYSQL_USER: ${{secrets.MYSQL_USER}}
+        MYSQL_PASSWORD: ${{secrets.MYSQL_PASSWORD}}
+        MYSQL_PORT: ${{secrets.MYSQL_PORT}}
+        DB_NAME: ${{secrets.DB_NAME}}
+        ADMIN_PASSWORD: ${{secrets.ADMIN_PASSWORD}}
+        CONNECTION_STRING: ${{secrets.CONNECTION_STRING}}
+        CONNECTION_STRING_TEST: ${{secrets.CONNECTION_STRING_TEST}}
+        MONGOOSE_ID: ${{secrets.MONGOOSE_ID}}
+        MONGOOSE_PASSWORD: ${{secrets.MONGOOSE_PASSWORD}}
+        SESSION_KEY: ${{secrets.SESSION_KEY}}
+        ENV: ${{secrets.ENV}}
+          
     - run: npm ci
     - run: npm test
