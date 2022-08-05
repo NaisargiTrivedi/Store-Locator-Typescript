@@ -27,8 +27,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-        
-    - name: Initializing env variables
       env:
         PORT: ${{secrets.PORT}}
         MYSQL_USER: ${{secrets.MYSQL_USER}}
