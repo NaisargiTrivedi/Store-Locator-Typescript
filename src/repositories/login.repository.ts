@@ -8,6 +8,8 @@ const loginCredential = async (emailReq: string, passwordReq: string, next: Next
         const email: Model<UserAttributes, UserCreationAttributes> | null = await userModel.findOne(
             { where: { email: emailReq } }
         );
+        console.log("emailreq..................",emailReq);
+        console.log("emaildb....................",email);
         if (email != null) {
             const passwordVerified: boolean = await bcryptjs.compare(passwordReq, email?.getDataValue("password"));
             if (passwordVerified) {
