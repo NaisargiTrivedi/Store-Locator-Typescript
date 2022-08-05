@@ -42,6 +42,7 @@ describe('login-route-test', () => {
                 "password": "admin@123"
             })
             .end((_err, res) => {
+                console.log(res);
                 expect(res).to.have.status(422);
                 done();
             })
