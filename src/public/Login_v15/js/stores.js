@@ -13,7 +13,7 @@ const storeDataFetch = () => {
             {
                 data: "logoFilePath",
                 render: function (data) {
-                    return '<img src="/Login_v15/images/' + data + '" height="50" width="90">';
+                    return '<img src="/Login_v15/storeLogo/' + data + '" height="50" width="90">';
                 }
             },
             { data: "address", name: "Address" },

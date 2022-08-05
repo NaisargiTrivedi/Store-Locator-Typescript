@@ -18,12 +18,10 @@ registerSession.use(session({
 }));
 
 const verifySession = (req: Request, res: Response, next: NextFunction): any => {
-    console.log(req.session.logedin);
     if (req.session.logedin) {
         next();
     }
     else {
-        console.log("else");
         res.status(440).redirect('/login');
     }
 };

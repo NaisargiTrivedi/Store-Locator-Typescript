@@ -12,8 +12,8 @@ type FileNameCallback = (error: Error | null, filename: string) => void
 
 const storage = multer.diskStorage({
     destination (_request: Request, _file: Express.Multer.File, cb: DestinationCallback) {
-        cb(null, '../StoreLocator_TypeScript/dist/public/Login_v15/images');
-        cb(null, '../StoreLocator_TypeScript/src/public/Login_v15/images');
+        cb(null, '../StoreLocator_TypeScript/dist/public/Login_v15/storeLogo');
+        cb(null, '../StoreLocator_TypeScript/src/public/Login_v15/storeLogo');
     },
     filename (_req: Request, file: Express.Multer.File, cb: FileNameCallback) {
         logger.info('multer......');

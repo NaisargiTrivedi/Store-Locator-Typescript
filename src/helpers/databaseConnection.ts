@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 let connectionString = "";
 (process.env.ENV === "dev") ? connectionString = process.env.CONNECTION_STRING as string : connectionString = process.env.CONNECTION_STRING_TEST as string;
 
-console.log("env....",process.env.ENV);
+console.log("env....", process.env.ENV);
 console.log(connectionString);
 
 mongoose.connect(connectionString, (err) => {

@@ -26,7 +26,6 @@ describe('get-stores-route-test', () => {
             chai.request(app)
                 .get('/stores/storeDataFetchApi')
                 .end((_err, res) => {
-                    console.log(res);
                     expect(res).to.have.status(200);
                     expect(res.text).to.be.equal('[]');
                     done();

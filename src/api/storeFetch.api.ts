@@ -9,7 +9,6 @@ import { filePath } from "../middlewares/general/fileUpload";
 const storeFetchApi = async (_req: Request, res: Response, next: NextFunction): Promise<Response | any> => {
     try {
         const stores: Stores[] = await storeFetch(next);
-        console.log(stores);
         if (stores.length > 0) {
             return res.status(200).send(stores);
         }

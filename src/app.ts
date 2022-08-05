@@ -1,9 +1,9 @@
 import 'dotenv/config';
 import express, { Application } from 'express';
-import bcryptjs from 'bcryptjs';
 import path from 'path';
 import helmet from 'helmet';
 import compression from 'compression';
+import bcryptjs from 'bcryptjs';
 
 import sequelize from './helpers/databaseConnection';
 import userModel from './models/userModel';
@@ -31,20 +31,25 @@ app.use(express.static(__dirname + '/public'));
 app.use(cors);
 app.use(registerSession);
 
-sequelize.sync({ force: true })
-    .then(() => {
-        const salt: Promise<string> = bcryptjs.genSalt(10);
-        salt.then(result => {
-            return bcryptjs.hash(process.env.ADMIN_PASSWORD as string, result);
-        })
-            .then(hashedPwd => {
-                userModel.create({ email: "admin@gmail.com", password: hashedPwd });
+userModel.findOne({
+    where: { email: "admin@gmail.com" },
+}).then((user) => {
+    if (!user) {
+        sequelize.sync()
+            .then(() => {
+                const salt: Promise<string> = bcryptjs.genSalt(10);
+                salt.then(result => {
+                    return bcryptjs.hash(process.env.ADMIN_PASSWORD as string, result);
+                })
+                    .then(hashedPwd => {
+                        userModel.create({ email: "admin@gmail.com", password: hashedPwd });
+                    })
             })
-    })
-    .catch((err) => {
-        console.log(err)
-    });
-
+            .catch((err) => {
+                console.log(err)
+            });
+    }
+});
 
 app.use(router); // testing ma kem router position swap karvi padi??....chai.use(http) must setup the server 1st before sending requests.
 
