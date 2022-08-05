@@ -35,4 +35,5 @@ jobs:
         ENV: ${{secrets.ENV}}
           
     - run: npm install
+    - run: npm install @types/mongoose @types/sequelize @types/express-validator @types/winston
     - run: npm test
