@@ -22,4 +22,6 @@ const sequelize: Sequelize = new Sequelize(process.env.DB_NAME as string, proces
     "host": "localhost"
 });
 
+sequelize.authenticate().then(function(errors) { console.log("errdbconn..........",errors) });
+
 export default sequelize;
