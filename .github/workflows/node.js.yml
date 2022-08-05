@@ -34,5 +34,6 @@ jobs:
         SESSION_KEY: ${{secrets.SESSION_KEY}}
         ENV: ${{secrets.ENV}}
           
-    - run: npm ci
+    - run: npm install
+    - run: npm install @types/mongoose @types/sequelize @types/express-validator @types/winston
     - run: npm test
