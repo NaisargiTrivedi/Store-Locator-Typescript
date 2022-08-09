@@ -7,7 +7,7 @@
     "clear": "rimraf dist/*",
     "copy-assets": "ts-node src/tools/copyAssets.ts",
     "lint": "tslint -c tslint.json -p tsconfig.json --fix",
-    "test": "set ENV=test && mocha -r ts-node/register src/test/**/* ",
+    "test": "set ENV=test && mocha --timeout 10000 -r ts-node/register src/test/**/* ",
     "tsc": "tsc",
     "build": "npm-run-all clear lint tsc copy-assets start",
     "start": "nodemon",
