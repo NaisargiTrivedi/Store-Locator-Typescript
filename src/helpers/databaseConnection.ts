@@ -19,7 +19,7 @@ mongoose.connect(connectionString, (err) => {
 
 const sequelize: Sequelize = new Sequelize(process.env.DB_NAME as string, process.env.MYSQL_USER as string, process.env.MYSQL_PASSWORD as string, {
     'dialect': 'mysql',
-    "host": "localhost"
+    "host": "127.0.0.1"
 });
 
 try {
