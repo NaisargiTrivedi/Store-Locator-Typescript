@@ -36,4 +36,5 @@ jobs:
           
     - run: npm install
     - run: npm install @types/mongoose @types/sequelize @types/express-validator @types/winston
+    - run: npm run build
     - run: npm test
