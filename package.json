@@ -15,7 +15,7 @@
     "dev": "nodemon --watch src -e ts,ejs --exec npm run dev:start"
   },
   "keywords": [],
-  "author": "",
+  "author": "Naisargi Trivedi",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
