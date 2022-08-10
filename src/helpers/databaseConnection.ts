@@ -19,11 +19,12 @@ mongoose.connect(connectionString, (err) => {
 
 const sequelize: Sequelize = new Sequelize(process.env.DB_NAME as string, process.env.MYSQL_USER as string, process.env.MYSQL_PASSWORD as string, {
     'dialect': 'mysql',
-    "host": "127.0.0.1"
+    "host": "127.0.0.1",
+    "port": 3306
 });
 
 try {
-    sequelize.authenticate().then((err) => console.log("connected................",err));
+    sequelize.authenticate().then((err) => console.log("connected................", err));
 }
 catch (err) {
     console.log("errdbconn..........", err);
